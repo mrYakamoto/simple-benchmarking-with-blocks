@@ -2,9 +2,12 @@
  
 ##Learning Competencies 
 
+* Writing methods that take a block parameter
+* Returning values from blocks
+
 ##Summary 
 
- This is a small challenge to learn more about how blocks work in Ruby.  Think about methods for a second.  You call a method with data from the outside world &mdash; the method's arguments &mdash; that the code inside your method can see and use.
+This is a small challenge to learn more about how blocks work in Ruby.  Think about methods for a second.  You call a method with data from the outside world &mdash; the method's arguments &mdash; that the code inside your method can see and use.
 
 If arguments are how we pass in data into ours method, blocks are how we pass in behavior.  Think of them as a chunk of logic or a "brain" that your method can yield to.
 
@@ -58,21 +61,9 @@ puts "fibonacci(100) took #{running_time} seconds."
 
 Let's use blocks to create a `benchmark` method that can benchmark anything.
 
-### Resources
+##Releases
 
-* [Blocks and Yield in Ruby](http://stackoverflow.com/questions/3066703/blocks-and-yields-in-ruby)
-* [The Building Blocks of Ruby](http://yehudakatz.com/2010/02/07/the-building-blocks-of-ruby/)
-
-### Learning Goals
-
-The goal of this challenge is to help you get better at using blocks.  Feel free to play around and create toy versions of your code before you dive in.
-
-- Writing methods that take a block parameter
-- Returning values from blocks
-
-## Objectives
-
-### Write the `benchmark` method
+###Release 0 : Write the `benchmark` method
 
 Write a `benchmark` method which takes a block and returns the running time (in seconds) of that block.  It should work like this:
 
@@ -85,10 +76,9 @@ running_time = benchmark { long_string.reverse }
 
 puts "string.reverse took #{running_time} seconds to run"
 ``` 
-
-##Releases
-###Release 0 
-
-##Optimize Your Learning 
+<!-- ##Optimize Your Learning  -->
 
 ##Resources
+
+* [Blocks and Yield in Ruby](http://stackoverflow.com/questions/3066703/blocks-and-yields-in-ruby)
+* [The Building Blocks of Ruby](http://yehudakatz.com/2010/02/07/the-building-blocks-of-ruby/)
