@@ -9,7 +9,7 @@
 
 This is a small challenge to learn more about how blocks work in Ruby.  Think about methods for a second.  You call a method with data from the outside world &mdash; the method's arguments &mdash; that the code inside your method can see and use.
 
-If arguments are how we pass in data into ours method, blocks are how we pass in behavior.  Think of them as a chunk of logic or a "brain" that your method can yield to.
+If arguments are how we pass data into our method, blocks are how we pass in behavior.  Think of them as a chunk of logic or a "brain" that your method can yield to.
 
 Blocks can be passed into methods as a sort of "invisible argument", like this:
 
