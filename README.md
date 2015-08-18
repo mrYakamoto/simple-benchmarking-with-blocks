@@ -1,43 +1,60 @@
-# Simple Benchmarking With Blocks 
- 
-##Learning Competencies 
+# Simple Benchmarking With Blocks
 
-* Writing methods that take a block parameter
-* Returning values from blocks
+## Summary
+When we define methods, it's common for them to accept arguments. For example, we've written methods that accept a string argument in order to [convert it to pig latin][pig latin challenge], [scan it for a social security number][regular expressions challenge], etc. Arguments allow us to pass data to our methods, and as our methods execute, they use this data.  
 
-##Summary 
-
-This is a small challenge to learn more about how blocks work in Ruby.  Think about methods for a second.  You call a method with data from the outside world &mdash; the method's arguments &mdash; that the code inside your method can see and use.
-
-If arguments are how we pass data into our method, blocks are how we pass in behavior.  Think of them as a chunk of logic or a "brain" that your method can yield to.
-
-Blocks can be passed into methods as a sort of "invisible argument", like this:
+We can also write methods that allow users to pass in behavior—what happens when a method is called.  Where we use arguments to pass data into our methods, we use blocks to pass in behavior.
 
 ```ruby
-def print_result
-  block_execution = yield
-  puts block_execution
+def calculate
+  calculation = yield
 end
 
-# This will print out the number 9 to the console
-print_result { 3 * 3 }
-
-# Blocks can also be written using the do...end format
-print_result do
-  creature = "walrus"
-  "I am the #{creature}!"
-end
-
-# Blocks have access to variables outside of their definition
-
-shopping_list = [:milk, :eggs, :cheese]
-print_result do
-  important_item = shopping_list.sample
-  "I hope I don't forget #{important_item}!!!"
-end
+calculate { 2 + 2 }
+# => 4
+calculate { 3 * 4 }
+# => 12
 ```
+*Figure 1*.  Defining and calling a method that executes a block.
 
-As you will notice, the call to `yield` in the method definition is where the block is executed.
+In Figure 1, we define and then call a `calculate` method.  When we call the method, we pass in a block.  The first time we call the method, we pass in the block `{ 2 + 2 }`.  The second time, we pass the block `{ 3 * 4 }`.  The blocks represent pieces of code that we want the method to execute.  Within the method, we use the `yield` keyword to call for the code in the block to be executed.
+
+
+### Syntax of Working with Blocks
+```ruby
+calculate { 5 * 7 }
+# => 35
+
+calculate do
+  product = 5 * 7
+  product + 1
+end
+# => 36
+```
+*Figure 2*.  Different syntax options for defining a block.
+
+We have choices when it comes to how we define the blocks that we pass to our methods.  We can use curly braces:  `{ ... }`.  Or, we can use `do ... end`.  We generally use curly braces if our block only contains one statement and is written on one line.  If we have multiple statements and our code is written on more than one line, we favor `do ... end`. (see Figure 2)
+
+```ruby
+def verify(expected)
+    yield(expected)
+end
+
+verify(5) { |n| n == 2 + 3 }
+# => true
+verify(9) { |n| n == 2 + 3 }
+# => false
+```
+*Figure 3*.  Defining a block that accepts an argument.
+
+As with methods, blocks can accept arguments.  In Figure 3, the blocks that we pass to the `verify` method need data to be passed into them in order to function.  So, when we yield, we pass the block the argument that it needs—in the same way that we would pass an argument to a method.
+
+
+
+
+
+
+
 
 Let's write something practical using blocks.  A common scenario is wanting to benchmark some code.  The "skeleton" involved in benchmarking doesn't need to know what it's benchmarking, but it should be responsible for keeping track of how long it's running and other benchmarking-specific concerns.
 
@@ -75,10 +92,13 @@ long_string = "apple"*100000000
 running_time = benchmark { long_string.reverse }
 
 puts "string.reverse took #{running_time} seconds to run"
-``` 
+```
 <!-- ##Optimize Your Learning  -->
 
 ##Resources
 
 * [Blocks and Yield in Ruby](http://stackoverflow.com/questions/3066703/blocks-and-yields-in-ruby)
 * [The Building Blocks of Ruby](http://yehudakatz.com/2010/02/07/the-building-blocks-of-ruby/)
+
+[pig latin challenge]: ../../../pig-latin-challenge
+[regular expressions challenge]: ../../../ruby-drill-regular-expressions-challenge
