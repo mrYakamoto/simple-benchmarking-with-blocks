@@ -81,7 +81,7 @@ upcase_run_time = upcase_end_time - upcase_start_time
 
 In Figure 5 we're working with a long string, and we calculate how long it takes to reverse it.  Then we calculate how long it takes to upcase it.  Already, we can see that we're beginning to repeat ourselves:  mark the start time, execute some code, mark the end time, and then calculate how long it took to execute the code.
 
-With this sort of repetition, we might want to refactor this behavior into a method, and this would be a great example for when to use blocks. We have a general pattern of behavior that we follow, but we also have some variability (i.e., the code whose execution time we're calculating).  We'll
+With this sort of repetition, we might want to refactor this behavior into a method, and this would be a great example for when to use blocks. We have a general pattern of behavior that we follow, but we also have some variability (i.e., the code whose execution time we're calculating).
 
 ```ruby
 long_string = "abcde" * 5000000
