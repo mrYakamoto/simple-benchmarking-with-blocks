@@ -49,6 +49,19 @@ verify(9) { |n| n == 2 + 3 }
 
 As with methods, blocks can accept arguments.  In Figure 3, the blocks that we pass to the `verify` method need data to be passed into them in order to function.  So, when we yield, we pass the block the argument that it needs—in the same way that we would pass an argument to a method.
 
+```ruby
+def calculate
+  calculation = yield
+end
+
+number = 5
+calculate { number + 2 }
+# => 7
+```
+*Figure 4*.  Blocks maintain the scope in which they're defined.
+
+One interesting feature of blocks is that they retain their local scope.  In other words, variables and methods that are available when the block is defined will also be available when the block is executed.  In Figure 4 we define a variable `number`, which we then use when we define the block that we pass when calling `calculate`.  While our `calculate` method is running, the method itself will not have access to `number`, but our block will.  We'll see this feature used in the code examples in this challenge.
+
 ## Releases
 ### Release 0:  Calculate Time Needed to Run Code
 ```ruby
@@ -64,9 +77,9 @@ long_string.upcase
 upcase_end_time = Time.now
 upcase_run_time = upcase_end_time - upcase_start_time
 ```
-*Figure 4*. Calculating the time it takes to work with a long string.
+*Figure 5*. Calculating the time it takes to work with a long string.
 
-In Figure 4 we're working with a long string, and we calculate how long it takes to reverse it.  Then we calculate how long it takes to upcase it.  Already, we can see that we're beginning to repeat ourselves:  mark the start time, execute some code, mark the end time, and then calculate how long it took to execute the code.
+In Figure 5 we're working with a long string, and we calculate how long it takes to reverse it.  Then we calculate how long it takes to upcase it.  Already, we can see that we're beginning to repeat ourselves:  mark the start time, execute some code, mark the end time, and then calculate how long it took to execute the code.
 
 With this sort of repetition, we might want to refactor this behavior into a method, and this would be a great example for when to use blocks. We have a general pattern of behavior that we follow, but we also have some variability (i.e., the code whose execution time we're calculating).  We'll
 
