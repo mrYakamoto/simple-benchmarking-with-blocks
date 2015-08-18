@@ -17,7 +17,7 @@ calculate { 3 * 4 }
 ```
 *Figure 1*.  Defining and calling a method that executes a block.
 
-In Figure 1, we define and then call a `calculate` method.  When we call the method, we pass in a block.  The first time we call the method, we pass in the block `{ 2 + 2 }`.  The second time, we pass the block `{ 3 * 4 }`.  The blocks represent pieces of code that we want the method to execute.  Within the method, we use the `yield` keyword to call for the code in the block to be executed.
+In Figure 1, we define and then call a `calculate` method.  When we call the method, we pass in a block.  The first time we call the method, we pass in the block `{ 2 + 2 }`.  The second time, we pass the block `{ 3 * 4 }`.  The blocks represent pieces of code that we want the method to execute.  Within the method, we [use the `yield` keyword][yield explanation] to call for the code in the block to be executed.
 
 
 ### Syntax of Working with Blocks
@@ -83,10 +83,6 @@ Let's write a `benchmark` method that accepts a block and calculates the number 
 
 
 
-##Resources
-
-* [Blocks and Yield in Ruby](http://stackoverflow.com/questions/3066703/blocks-and-yields-in-ruby)
-* [The Building Blocks of Ruby](http://yehudakatz.com/2010/02/07/the-building-blocks-of-ruby/)
-
 [pig latin challenge]: ../../../pig-latin-challenge
 [regular expressions challenge]: ../../../ruby-drill-regular-expressions-challenge
+[yield explanation]: http://stackoverflow.com/questions/3066703/blocks-and-yields-in-ruby
