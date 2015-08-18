@@ -90,10 +90,12 @@ reverse_run_time  = benchmark { long_string.reverse }
 upcase_run_time   = benchmark { long_string.upcase }
 addition_run_time = benchmark { 1 + 2 + 6 + 8 }
 ```
-*Figure 5*. Example usage of the `benchmark` method.
+*Figure 6*. Example usage of the `benchmark` method.
 
-Let's write a `benchmark` method that accepts a block and calculates the number of seconds it takes to execute the block. Regardless of what happens in the block, our method should calculate how long it takes to run the code in the block.  We can see example usage in Figure 5 and in the file `runner.rb`
+Let's write a `benchmark` method that accepts a block and calculates the number of seconds it takes to execute the block. Regardless of what happens in the block, our method should calculate how long it takes to run the code in the block.  We can see example usage in Figure 6 and in the file `runner.rb`
 
+## Conclusion
+When we write RSpec tests, we write blocks constantly, so we've been writing Ruby code with blocks.  In this challenge we've gotten an introduction to how we can write code ourselves that utilize blocks.  Blocks are a great feature of Ruby, and we'll continue to explore them
 
 
 [pig latin challenge]: ../../../pig-latin-challenge
