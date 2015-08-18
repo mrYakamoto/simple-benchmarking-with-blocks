@@ -37,7 +37,7 @@ We have choices when it comes to how we define the blocks that we pass to our me
 
 ```ruby
 def verify(expected)
-    yield(expected)
+  yield(expected)
 end
 
 verify(5) { |n| n == 2 + 3 }
@@ -49,51 +49,39 @@ verify(9) { |n| n == 2 + 3 }
 
 As with methods, blocks can accept arguments.  In Figure 3, the blocks that we pass to the `verify` method need data to be passed into them in order to function.  So, when we yield, we pass the block the argument that it needs—in the same way that we would pass an argument to a method.
 
+## Releases
+### Release 0:  Calculate Time Needed to Run Code
+```ruby
+long_string = "abcde" * 5000000
 
+reverse_start_time = Time.now
+long_string.reverse
+reverse_end_time = Time.now
+reverse_run_time = reverse_end_time - reverse_start_time
 
+upcase_start_time = Time.now
+long_string.upcase
+upcase_end_time = Time.now
+upcase_run_time = upcase_end_time - upcase_start_time
+```
+*Figure 4*. Calculating the time it takes to work with a long string.
 
+In Figure 4 we're working with a long string, and we calculate how long it takes to reverse it.  Then we calculate how long it takes to upcase it.  Already, we can see that we're beginning to repeat ourselves:  mark the start time, execute some code, mark the end time, and then calculate how long it took to execute the code.
 
-
-
-
-Let's write something practical using blocks.  A common scenario is wanting to benchmark some code.  The "skeleton" involved in benchmarking doesn't need to know what it's benchmarking, but it should be responsible for keeping track of how long it's running and other benchmarking-specific concerns.
-
-That is, it shouldn't care whether we're benchmarking a simple function to add two numbers or something much more complicated.
-
-Without blocks we might write code like this:
+With this sort of repetition, we might want to refactor this behavior into a method, and this would be a great example for when to use blocks. We have a general pattern of behavior that we follow, but we also have some variability (i.e., the code whose execution time we're calculating).  We'll
 
 ```ruby
-start_time = Time.now
+long_string = "abcde" * 5000000
 
-# Calculate the 100th Fibonacci number
-fibonacci(100)
-
-end_time = Time.now
-
-# This will return the difference in the timestamps in seconds
-running_time = end_time - start_time
-
-puts "fibonacci(100) took #{running_time} seconds."
+reverse_run_time  = benchmark { long_string.reverse }
+upcase_run_time   = benchmark { long_string.upcase }
+addition_run_time = benchmark { 1 + 2 + 6 + 8 }
 ```
+*Figure 5*. Example usage of the `benchmark` method.
 
-Let's use blocks to create a `benchmark` method that can benchmark anything.
+Let's write a `benchmark` method that accepts a block and calculates the number of seconds it takes to execute the block. Regardless of what happens in the block, our method should calculate how long it takes to run the code in the block.  We can see example usage in Figure 5 and in the file `runner.rb`
 
-##Releases
 
-###Release 0 : Write the `benchmark` method
-
-Write a `benchmark` method which takes a block and returns the running time (in seconds) of that block.  It should work like this:
-
-```ruby
-# Be careful, pasting this into IRB will take a long time to print.
-# It's a loooong string. :)
-long_string = "apple"*100000000
-
-running_time = benchmark { long_string.reverse }
-
-puts "string.reverse took #{running_time} seconds to run"
-```
-<!-- ##Optimize Your Learning  -->
 
 ##Resources
 

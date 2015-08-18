@@ -1,7 +1,10 @@
 require_relative 'benchmark'
 
 
-long_string  = "apple"*100000000
-running_time = benchmark { long_string.reverse }
+long_string = "abcde" * 5000000
 
-puts "The #reverse method took #{running_time} seconds to run."
+reverse_run_time = benchmark { long_string.reverse }
+puts "The #reverse method took #{reverse_run_time} seconds to run."
+
+upcase_run_time = benchmark { long_string.upcase }
+puts "The #upcase method took #{upcase_run_time} seconds to run."
